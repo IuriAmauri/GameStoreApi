@@ -11,9 +11,10 @@ namespace GameStoreApi.Data
         {
             _dbContext = dbContext;
         }
-        public Game GetGameById(int id)
+
+        public bool SaveChanges()
         {
-            return _dbContext.Games.FirstOrDefault(g => g.Id == id);
+            return _dbContext.SaveChanges() > 0;
         }
 
         public IEnumerable<Game> GetAllGames()
@@ -21,19 +22,24 @@ namespace GameStoreApi.Data
             return _dbContext.Games.ToList();
         }
 
+        public Game GetGameById(int id)
+        {
+            return _dbContext.Games.FirstOrDefault(g => g.Id == id);
+        }
+
         public void CreateGame(Game game)
         {
-            throw new System.NotImplementedException();
+            _dbContext.Games.Add(game);
         }
 
         public void UpdateGame(Game game)
         {
-            throw new System.NotImplementedException();
+            _dbContext.Update(game);
         }
 
         public void DeleteGame(Game game)
         {
-            throw new System.NotImplementedException();
+            _dbContext.Remove(game);
         }
     }
 }

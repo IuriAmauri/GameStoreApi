@@ -5,6 +5,7 @@ namespace GameStoreApi.Data
 {
     public interface IGamesRepository
     {
+        bool SaveChanges();
          IEnumerable<Game> GetAllGames();
          Game GetGameById(int id);
          void CreateGame(Game game);

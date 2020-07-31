@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 
 namespace GameStore
 {
@@ -26,7 +27,10 @@ namespace GameStore
                 options.UseSqlServer(GetConnectionString())
             );
             
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(s => 
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver()
+            );
+            
             services.AddScoped<IGamesRepository, SqlGamesRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
