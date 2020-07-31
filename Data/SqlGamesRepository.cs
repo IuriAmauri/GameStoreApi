@@ -11,15 +11,9 @@ namespace GameStoreApi.Data
         {
             _dbContext = dbContext;
         }
-
-        public void CreateGame(Game game)
+        public Game GetGameById(int id)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteGame(Game game)
-        {
-            throw new System.NotImplementedException();
+            return _dbContext.Games.FirstOrDefault(g => g.Id == id);
         }
 
         public IEnumerable<Game> GetAllGames()
@@ -27,12 +21,17 @@ namespace GameStoreApi.Data
             return _dbContext.Games.ToList();
         }
 
-        public Game GetGameById(int id)
+        public void CreateGame(Game game)
         {
-            return _dbContext.Games.FirstOrDefault(g => g.Id == id);
+            throw new System.NotImplementedException();
         }
 
         public void UpdateGame(Game game)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteGame(Game game)
         {
             throw new System.NotImplementedException();
         }
